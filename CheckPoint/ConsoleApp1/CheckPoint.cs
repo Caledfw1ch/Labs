@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace KPP
 {
@@ -28,10 +27,16 @@ namespace KPP
 		{
 			if (v.BodyType == VehicleBodyType.Bus)
 				_statistics.BusesCount++;
+			else if (v.BodyType == VehicleBodyType.Car)
+				_statistics.CarsCount++;
+			else if (v.BodyType == VehicleBodyType.Truck)
+				_statistics.TrucksCount++;
 
-			if (v.Speed > SpeedLimit)
+			if (v.Speed > SpeedLimit) // v._vmt[0]()
 			{
 				Console.WriteLine("Превышение скорости!");
+
+				_statistics.SpeedLimitBreakerCount++;
 			}
 
 			// TODO: доделать проверки, проверить на угон.

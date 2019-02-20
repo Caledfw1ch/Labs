@@ -1,24 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace KPP
 {
+	/// <summary>
+	/// Фабричный класс. Используется для создания экземпляров автомобилей.
+	/// </summary>
 	static class VehicleFactory
 	{
-		public static Vehicle CreateVehicle(VehicleBodyType bt)
-		{
-			// TODO: сгенерировать значения свойств машины, передать их через параметры конструктора.
-			var color = VehicleColor.Green; // Сгенерировать!
+		private static readonly Random _random = new Random();
 
-			if (bt == VehicleBodyType.Bus)
-				return new Bus(color);
-			else if (bt == VehicleBodyType.Car)
-				return new Car(color);
-			else if (bt == VehicleBodyType.Truck)
-				return new Truck(color);
-			else
-				throw new ArgumentException("Такой тип автомобиля не производится");
+		public static Vehicle CreateVehicle(VehicleBodyType bodyType)
+		{
+			var colorIndex = _random.Next((int) VehicleColor.NoColor);
+			var color = (VehicleColor) colorIndex;
+			var licensePlateNumber = _random.Next(100, 1000);
+			var hasPassenger = _random.Next(2) == 1;
+
+			if (bodyType == VehicleBodyType.Bus)
+				return new Bus(color, licensePlateNumber.ToString(), hasPassenger);
+			if (bodyType == VehicleBodyType.Car)
+				return new Car(color, licensePlateNumber.ToString(), hasPassenger);
+			if (bodyType == VehicleBodyType.Truck)
+				return new Truck(color, licensePlateNumber.ToString(), hasPassenger);
+
+			throw new ArgumentException("Такой тип автомобиля не производится");
 		}
 	}
 }

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace KPP
+﻿namespace KPP
 {
 	public enum VehicleBodyType
 	{
-		Car,
-		Bus,
-		Truck
+		Car = 0,
+		Bus = 1,
+		Truck = 2,
+		NoVehicle = 3
 	}
 }

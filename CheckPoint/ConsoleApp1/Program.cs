@@ -7,15 +7,18 @@ namespace ConsoleApp1
 	{
 		static void Main(string[] args)
 		{
-			var cp = new CheckPoint();
-			Vehicle vehicle = null;
+			var random = new Random();
+			var checkPoint = new CheckPoint();
+			Vehicle vehicle;
 
 			do
 			{
-				// TODO: сгенерировать один из трёх типов автомобилей.
-				vehicle = VehicleFactory.CreateVehicle(VehicleBodyType.Bus);
+				var vehicleIndex = random.Next((int) VehicleBodyType.NoVehicle);
+				var bodyType = (VehicleBodyType) vehicleIndex;
 
-				cp.RegisterCar(vehicle);
+				vehicle = VehicleFactory.CreateVehicle(bodyType);
+
+				checkPoint.RegisterCar(vehicle);
 
 				//cp.Statistics.BusesCount = -123;
 			} while (!Console.KeyAvailable);

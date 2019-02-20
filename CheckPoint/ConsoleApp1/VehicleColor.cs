@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace KPP
+﻿namespace KPP
 {
-    public enum VehicleColor
-    {
-        Red,
-        Blue,
-        Green,
-        White
-    }
+	public enum VehicleColor
+	{
+		Red = 0,
+		Blue = 1,
+		Green = 2,
+		White = 3,
+		Yellow = 4,
+		NoColor = 5
+	}
 }
