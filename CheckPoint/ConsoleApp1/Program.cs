@@ -23,7 +23,14 @@ namespace ConsoleApp1
 				//cp.Statistics.BusesCount = -123;
 			} while (!Console.KeyAvailable);
 
-			// TODO: показать статистику.
-		}
+            var statistics = checkPoint.Statistics;
+
+            Console.WriteLine($"Машин проехало: {checkPoint.Statistics.CarsCount}");
+            Console.WriteLine(($"Грузовиков проехало: {statistics.TrucksCount}"));
+            Console.WriteLine(($"Автобусов проехало: {statistics.BusesCount}"));
+            Console.WriteLine(($"Нарушителей скоростного режима: {statistics.SpeedLimitBreakerCount}"));
+            Console.WriteLine(($"Машин в угоне: {statistics.CarJackersCount}"));
+            Console.WriteLine(($"Средняя скорость: {statistics.AverageSpeed}"));
+        }
 	}
 }

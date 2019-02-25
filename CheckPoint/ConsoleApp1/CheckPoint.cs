@@ -9,8 +9,9 @@ namespace KPP
 
 		private List<string> _stolenNumbers;
 		private CheckPointStatistics _statistics;
+        protected readonly Random random;
 
-		public CheckPointStatistics Statistics
+        public CheckPointStatistics Statistics
 		{
 			get { return new CheckPointStatistics(_statistics); }
 		}
@@ -19,9 +20,15 @@ namespace KPP
 		{
 			_stolenNumbers = new List<string>();
 			_statistics = new CheckPointStatistics();
+            random = new Random();
 
-			// TODO: заполнить реестр угнанных номеров.
-		}
+            do
+            {
+                _stolenNumbers.Add(random.Next(100, 1000).ToString());
+            }
+            while (_stolenNumbers.Count != 15);
+            // TODO: заполнить реестр угнанных номеров. почему-то срабатывает превышение скорости
+        }
 
 		public void RegisterCar(Vehicle v)
 		{
@@ -39,6 +46,12 @@ namespace KPP
 				_statistics.SpeedLimitBreakerCount++;
 			}
 
+            if (v.HasPassenger = false)      // не могу получить, почему?
+            {
+                Console.WriteLine("Перехват!");
+            
+                _statistics.CarJackersCount++;
+            }
 			// TODO: доделать проверки, проверить на угон.
 		}
 	}
