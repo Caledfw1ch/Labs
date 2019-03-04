@@ -2,7 +2,7 @@
 
 namespace KPP
 {
-	class Vehicle
+	abstract class Vehicle
 	{
 		protected readonly Random _random;
 
@@ -10,10 +10,7 @@ namespace KPP
 		public VehicleBodyType BodyType { get; protected set; }
 		public string LicensePlateNumber { get; protected set; }
 
-		public virtual int Speed
-		{
-			get { return -1; }
-		}
+		public abstract int Speed { get; }
 
 		public bool HasPassenger { get; protected set; }
 

@@ -7,7 +7,23 @@
 		public int BusesCount;
 		public int SpeedLimitBreakerCount;
 		public int CarJackersCount;
-		public int AverageSpeed;
+		public long SpeedSum;
+
+		public double AverageSpeed
+		{
+			get
+			{
+				return SpeedSum / TotalVehicleCount;
+			}
+		}
+
+		public int TotalVehicleCount
+		{
+			get
+			{
+				return CarsCount + BusesCount + TrucksCount;
+			}
+		}
 
 		public CheckPointStatistics() { }
 
@@ -22,7 +38,6 @@
 			BusesCount = source.BusesCount;
 			SpeedLimitBreakerCount = source.SpeedLimitBreakerCount;
 			CarJackersCount = source.CarJackersCount;
-			AverageSpeed = source.AverageSpeed;
 		}
 	}
 }

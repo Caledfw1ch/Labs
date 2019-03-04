@@ -9,6 +9,7 @@ namespace KPP
 
 		private List<string> _stolenNumbers;
 		private CheckPointStatistics _statistics;
+		protected readonly Random random;
 
 		public CheckPointStatistics Statistics
 		{
@@ -19,8 +20,13 @@ namespace KPP
 		{
 			_stolenNumbers = new List<string>();
 			_statistics = new CheckPointStatistics();
+			random = new Random();
 
-			// TODO: заполнить реестр угнанных номеров.
+			do
+			{
+				_stolenNumbers.Add(random.Next(100, 1000).ToString());
+			}
+			while (_stolenNumbers.Count != 100);
 		}
 
 		public void RegisterCar(Vehicle v)
@@ -32,14 +38,36 @@ namespace KPP
 			else if (v.BodyType == VehicleBodyType.Truck)
 				_statistics.TrucksCount++;
 
-			if (v.Speed > SpeedLimit) // v._vmt[0]()
+			var speed = v.Speed;
+
+			Console.WriteLine(" Номер машины: " + v.LicensePlateNumber + " Кузов: " + v.BodyType + " Цвет: " + v.Color +  " Скорость: " + v.Speed);
+
+			if (speed > SpeedLimit) // v._vmt[0]()
 			{
 				Console.WriteLine("Превышение скорости!");
 
 				_statistics.SpeedLimitBreakerCount++;
 			}
 
-			// TODO: доделать проверки, проверить на угон.
+			_statistics.SpeedSum += speed;
+
+			Console.WriteLine(v.HasPassenger ? "С пассажиром" : "Без пассажира");
+
+
+			//for (int i = 0; i < _stolenNumbers.Count; i++)
+			foreach (var item in _stolenNumbers)
+			{
+				//if (v.LicensePlateNumber == _stolenNumbers[i])
+				if (v.LicensePlateNumber == item)
+				{
+					Console.WriteLine("Перехват!");
+
+					_statistics.CarJackersCount++;
+
+					break;
+				}
+			}
+			 // TODO: доделать вывод информации
 		}
 	}
 }
